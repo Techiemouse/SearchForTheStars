@@ -27,6 +27,10 @@ export class AppComponent implements OnInit {
       this.actors = actors.results;
     });
   }
+//TODO add a flag to choose between actors and movies with tabs on ui
+  doSearch(input) {
+    console.log('++++click click++ ', input.searchTerm);
+  }
 
   ngOnInit() {
     this.getMovies();

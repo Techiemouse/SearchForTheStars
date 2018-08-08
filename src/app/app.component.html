@@ -4,9 +4,18 @@
     {{ title }}!
   </h1>
   </div>
-<h2>Here are some links to help you start: </h2>
+<h2>Search for your star: </h2>
+
+<form #newSearch = "ngForm" (ngSubmit) = "doSearch(newSearch.value)">
+  <div class="form-group" >
+    <input type="text" class="form-control" id="searchTerm" name = "searchTerm" placeholder = "Search for.." ngModel required>
+  </div>
+  <button type="submit" class="btn btn-success" value = "submit">Submit</button>
+
+</form>
+
 <div>
-    <p>Movie: {{movies.title}}</p>
+    <p>Movie: {{movies}}</p>
   
 </div>
 <div>

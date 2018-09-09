@@ -1,31 +1,47 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    {{ title }}!
-  </h1>
+
+<h2>Search for the star</h2>
+
+
+<div class="container">
+  <div class="row">
+    <div id="custom-search-input">
+      <div class="input-group col-md-12">
+          <input #newSearch (keyup.enter)="doSearch(newSearch.value)" type="text" class="search-query form-control"  placeholder="Search" ngModel/>
+          <span class="input-group-btn">
+              <button class="btn btn-danger" type="submit" (click)="doSearch(newSearch.value)"> 
+                  <span class="glyphicon glyphicon-search"></span>
+              </button>
+          </span>
+      </div>
+    </div>
   </div>
-<h2>Search for your star: </h2>
-
-<form #newSearch = "ngForm" (ngSubmit) = "doSearch(newSearch.value)">
-  <div class="form-group" >
-    <input type="text" class="form-control" id="searchTerm" name = "searchTerm" placeholder = "Search for.." ngModel required>
+  <div class="row search-results">
+    <div class="col-md-12">
+      <div *ngIf="movies">
+        <p>Movie: {{movies}}</p>
+      </div>
+      <div *ngIf="actors.length > 0">
+        <ul class="event-list">
+            <li *ngFor="let actor of actors">
+                <div class="profile">
+                <img *ngIf="actor.profile_path" alt={{actor.name}} src="https://image.tmdb.org/t/p/w185{{actor.profile_path}}" />
+                </div>
+                <div class="info ">
+                  <h2 class="name">{{actor.name}}</h2>
+                  <p class="desc">Popularity: {{actor.popularity}}</p>
+                </div>
+                <div class="social">
+                  <ul>
+                    <li class="facebook" style="width:33%;"><a href="#facebook"><span class="fa fa-facebook"></span></a></li>
+                    <li class="twitter" style="width:34%;"><a href="#twitter"><span class="fa fa-twitter"></span></a></li>
+                    <li class="google-plus" style="width:33%;"><a href="#google-plus"><span class="fa fa-google-plus"></span></a></li>
+                  </ul>
+                </div>
+              </li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <button type="submit" class="btn btn-success" value = "submit">Submit</button>
-
-</form>
-
-<div>
-    <p>Movie: {{movies}}</p>
-  
 </div>
-<div>
-  <ul>
-      <li *ngFor="let actor of actors">
-        <!-- <div *ngIf="movie.popularity > 24"> -->
-          
-            <p>{{actor.name}}</p>
 
-        <!-- </div> -->
-      </li>
-  </ul>
-</div>

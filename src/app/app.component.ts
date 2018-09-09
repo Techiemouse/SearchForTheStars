@@ -21,19 +21,18 @@ export class AppComponent implements OnInit {
       this.movies = list;
     });
   }
-  getActors(): void {
-    this.service.searchForActors('Jessica', (actors) => {
-      console.log('++++actors++ ', actors);
+  getActors(input:string): void {
+    this.service.searchForActors(input, (actors) => {
       this.actors = actors.results;
     });
   }
 //TODO add a flag to choose between actors and movies with tabs on ui
-  doSearch(input) {
-    console.log('++++click click++ ', input.searchTerm);
+  doSearch(input: string) {
+    this.getActors(input);
   }
 
   ngOnInit() {
     this.getMovies();
-    this.getActors();
+    this.getActors('Jessica');
   }
 }
